@@ -1,8 +1,8 @@
-// src/pages/Login.jsx
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
 import api from '../services/api';
+import styles from './styles/Login.module.css';
 
 export default function Login() {
   const [email, setEmail]       = useState('');
@@ -10,8 +10,8 @@ export default function Login() {
   const [error, setError]       = useState('');
   const [loading, setLoading]   = useState(false);
 
-  const { login }  = useAuth();
-  const navigate   = useNavigate();
+  const { login } = useAuth();
+  const navigate  = useNavigate();
 
   async function handleSubmit(e) {
     e.preventDefault();
@@ -30,18 +30,18 @@ export default function Login() {
   }
 
   return (
-    <div style={styles.container}>
-      <div style={styles.card}>
-        <h1 style={styles.title}>Ponto App</h1>
-        <p style={styles.subtitle}>Faça seu login</p>
+    <div className={styles.container}>
+      <div className={styles.card}>
+        <h1 className={styles.title}>Ponto App</h1>
+        <p className={styles.subtitle}>Faça seu login</p>
 
-        {error && <p style={styles.error}>{error}</p>}
+        {error && <p className={styles.error}>{error}</p>}
 
-        <div style={styles.form}>
-          <div style={styles.field}>
-            <label style={styles.label}>Email</label>
+        <div className={styles.form}>
+          <div className={styles.field}>
+            <label className={styles.label}>Email</label>
             <input
-              style={styles.input}
+              className={styles.input}
               type="email"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
@@ -49,10 +49,10 @@ export default function Login() {
             />
           </div>
 
-          <div style={styles.field}>
-            <label style={styles.label}>Senha</label>
+          <div className={styles.field}>
+            <label className={styles.label}>Senha</label>
             <input
-              style={styles.input}
+              className={styles.input}
               type="password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
@@ -61,7 +61,7 @@ export default function Login() {
           </div>
 
           <button
-            style={{ ...styles.button, opacity: loading ? 0.7 : 1 }}
+            className={styles.button}
             onClick={handleSubmit}
             disabled={loading}
           >
@@ -72,36 +72,3 @@ export default function Login() {
     </div>
   );
 }
-
-const styles = {
-  container: {
-    display: 'flex', justifyContent: 'center', alignItems: 'center',
-    minHeight: '100vh', backgroundColor: '#f3f4f6',
-  },
-  card: {
-    backgroundColor: '#fff', padding: '2.5rem', borderRadius: '12px',
-    boxShadow: '0 4px 20px rgba(0,0,0,0.08)', width: '100%', maxWidth: '400px',
-  },
-  title: {
-    fontSize: '1.8rem', fontWeight: 'bold', color: '#2e4057', marginBottom: '0.25rem',
-  },
-  subtitle: {
-    color: '#6b7280', marginBottom: '1.5rem', fontSize: '0.95rem',
-  },
-  form: { display: 'flex', flexDirection: 'column', gap: '1rem' },
-  field: { display: 'flex', flexDirection: 'column', gap: '0.4rem' },
-  label: { fontSize: '0.9rem', fontWeight: '600', color: '#374151' },
-  input: {
-    padding: '0.65rem 0.9rem', borderRadius: '8px', fontSize: '0.95rem',
-    border: '1px solid #d1d5db', outline: 'none', color: '#2e4057',
-  },
-  button: {
-    padding: '0.75rem', backgroundColor: '#048A81', color: '#fff',
-    border: 'none', borderRadius: '8px', fontSize: '1rem',
-    fontWeight: '600', cursor: 'pointer', marginTop: '0.5rem',
-  },
-  error: {
-    backgroundColor: '#fee2e2', color: '#b91c1c', padding: '0.65rem 0.9rem',
-    borderRadius: '8px', fontSize: '0.9rem', marginBottom: '0.5rem',
-  },
-};

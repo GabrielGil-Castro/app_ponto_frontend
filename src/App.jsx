@@ -1,6 +1,8 @@
 // src/App.jsx
 import { Routes, Route, Navigate } from 'react-router-dom';
 import { useAuth } from './context/AuthContext';
+import Dashboard from './pages/Dashboard';
+import Admin from './pages/Admin';
 import Login from './pages/Login';
 
 function PrivateRoute({ children, adminOnly = false }) {
@@ -19,13 +21,13 @@ export default function App() {
 
       <Route path="/dashboard" element={
         <PrivateRoute>
-          <div>Dashboard Employee — em construção</div>
+          <Dashboard />
         </PrivateRoute>
       } />
 
       <Route path="/admin" element={
         <PrivateRoute adminOnly>
-          <div>Painel Admin — em construção</div>
+          <Admin />
         </PrivateRoute>
       } />
 
