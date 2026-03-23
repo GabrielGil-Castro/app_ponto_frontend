@@ -61,6 +61,7 @@ export default function Login() {
           </div>
 
           <button
+            type="button"
             className={styles.button}
             onClick={handleSubmit}
             disabled={loading}
