@@ -1,16 +1,57 @@
-# React + Vite
+# Ponto App — Frontend
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Interface web para sistema de registro de ponto. Desenvolvido com React e Vite.
 
-Currently, two official plugins are available:
+## Stack
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+- React 19 + Vite
+- React Router
+- Axios
+- date-fns
+- CSS Modules
 
-## React Compiler
+## Funcionalidades
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+- Login com JWT
+- Dashboard do funcionário: bater ponto e ver registros
+- Painel admin: gerenciar usuários e registros
+- Rotas protegidas por perfil
 
-## Expanding the ESLint configuration
+## Como rodar localmente
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+### Pré-requisitos
+- Node.js 23+
+- Backend rodando em `http://localhost:3001`
+
+### Setup
+```bash
+npm install
+npm run dev
+```
+
+Acesse `http://localhost:5173`
+
+### Variáveis de ambiente
+
+Crie um arquivo `.env.production` na raiz do projeto:
+```
+VITE_API_URL=http://localhost:3001
+```
+
+## Estrutura
+```
+src/
+├── context/       AuthContext — estado global de autenticação
+├── pages/         Login, Dashboard, Admin
+│   └── styles/    CSS Modules por página
+├── services/      api.js — instância Axios configurada
+├── App.jsx        Rotas e PrivateRoute
+└── main.jsx       Providers
+```
+
+## Rodar em produção
+```bash
+docker compose -f docker-compose.prod.yml --env-file .env.production up --build
+```
+
+Acesse `http://localhost`
